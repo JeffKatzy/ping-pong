@@ -1,4 +1,5 @@
 class TablesController < ApplicationController 
+  # remove unused methods
   def index
   end
 

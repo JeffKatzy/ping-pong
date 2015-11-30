@@ -22,6 +22,7 @@ class Player < ActiveRecord::Base
   attr_accessor :remember_token
 
       def singles_team
+        # unclear what this mehtod does - arguments are odd
         Team.find_or_create_by_player_ids([self.id, 0])
       end
 
@@ -54,11 +55,13 @@ class Player < ActiveRecord::Base
       # end
 
       def doubles_teams
+        # dont need to call method twice (singles_team)
         singles_team
         self.teams - [singles_team]
       end
 
       def doubles_games
+        # Seems like could drop down to sql
         doubles_teams.map do |team|
           team.games
         end.compact.flatten
@@ -74,7 +77,9 @@ class Player < ActiveRecord::Base
 
 
       ### RECORD ###
-
+      # A lot of these methods seem to really about the games, and not the players
+      # consider using delegation to move to the games, and the calling parts of the methods from there
+      # This object is large, so we need to break it up somehow
       def singles_wins
         singles_games.select do |game|
           game.winning_team.players.include?(self)

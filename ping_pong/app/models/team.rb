@@ -17,7 +17,7 @@ class Team < ActiveRecord::Base
   has_and_belongs_to_many :players
 
   def self.find_or_create_by_player_ids(player_id_array)
-
+    # ok, lets revisit this
     # Player.find(:player1_id).teams.select { |team| TeamPlayer.find_by(player_id: :player2_id, team_id: team.id }
     player1_id = player_id_array[0]
     player2_id = player_id_array[1]

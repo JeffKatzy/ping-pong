@@ -11,6 +11,7 @@ class Slackbot
   # WARNING = 'warning'
   # DANGER = 'danger'
 
+  # this should use the adapter pattern
   def initialize(channel = '#pingpongchannel')
     @uri = URI.parse("https://hooks.slack.com/services/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")
     @channel = channel

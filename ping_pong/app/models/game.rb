@@ -22,6 +22,8 @@ class Game < ActiveRecord::Base
     end[0]
   end
 
+
+  # this reveals perhaps improper modeling 
   def find_team_game_by_player_id(id)
     self.team_games.find do |team_game|
       team = self.teams.find do |team|
@@ -47,7 +49,8 @@ class Game < ActiveRecord::Base
     self.team_games.last.score
   end
 
-
+# repetiton here - first find out who is the winning team, 
+# and then use that to find their score
   def winning_team
     if team_one_score > team_two_score
       team_one
@@ -79,7 +82,7 @@ class Game < ActiveRecord::Base
       team_one_score
     end
   end
-
+  # why the extra method - name it right the first time
   def start_time
     match_time
   end
